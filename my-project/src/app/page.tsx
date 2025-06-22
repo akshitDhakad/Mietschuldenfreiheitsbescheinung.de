@@ -1,17 +1,17 @@
 "use client";
 import { useState } from "react";
-
-import Homebanner from "../components/Homebanner";
-import { Link } from "react-router-dom";
-import FaqSection from "../components/FaqSection";
-import { Button2 } from "../utils/Button";
+import Homebanner from "@/components/Homebanner";
+import Link from "next/link";
+import FaqSection from "@/components/FaqSection";
+import { Button2 } from "@/utils/Button";
 import Download from "@/components/Download";
+import Image from "next/image";
 // icons
 import { FaRegCircleCheck, FaThumbsDown, FaThumbsUp } from "react-icons/fa6";
 import { HiOutlineHome } from "react-icons/hi";
 
-function Home() {
-  const [active, setActive] = useState(0);
+export default function Home() {
+  const [active, setActive] = useState<number>(0);
 
   return (
     <>
@@ -19,25 +19,31 @@ function Home() {
       {/* Infobox */}
       <section className="relative bg-primary-green overflow-hidden">
         <div className="w-full sm:max-w-wider lg:max-w-8xl 2xl:max-w-9xl m-auto px-4 2xl:px-0 py-10 md:py-14 lg:py-20 grid md:grid-cols-3 gap-x-16 items-center">
-          <img
+          <Image
             loading="lazy"
             className="h-36 lg:h-80 absolute left-0 top-0"
             src="/img/line-effect.png"
             alt="line-effect"
+            width={200}
+            height={320}
           />
-          <img
+          <Image
             loading="lazy"
             className="h-36 lg:h-80 absolute -bottom-5 lg:-bottom-32 -right-5 rotate-180"
             src="/img/line-effect.png"
             alt="line-effect"
+            width={200}
+            height={320}
           />
           {/* left image  */}
           <div className="z-10 max-h-[600px] w-full">
-            <img
+            <Image
               loading="lazy"
               className="m-auto h-full w-full object-cover object-center"
               src="/img/Infobox.png"
               alt="Infobox"
+              width={400}
+              height={600}
             />
           </div>
           {/* Right content  */}
@@ -70,11 +76,13 @@ function Home() {
             {/* img section  */}
             <div className="me-auto w-full">
               <div className="w-full max-h-[575px] 2xl:max-h-[700px] overflow-hidden">
-                <img
+                <Image
                   loading="lazy"
                   className="w-full h-full max-h-[575px] xl:max-h-[600px] 2xl:max-h-[700px] object-cover object-top"
                   src="/img/mask-man.png"
                   alt="mietstatus Einführungsvideo"
+                  width={600}
+                  height={700}
                 />
               </div>
             </div>
@@ -111,7 +119,7 @@ function Home() {
                 </li>
               </ul>
               <div className="lg:mt-5 2xl:mt-0 mt-3">
-                <Link to="/uberblick/Wie%20erhalte%20ich%20eine%20Mietschuldenfreiheits-bescheinigung%3F?id=1">
+                <Link href="/uberblick/Wie%20erhalte%20ich%20eine%20Mietschuldenfreiheits-bescheinigung%3F?id=1">
                   <Button2
                     title={"Weiterlesen..."}
                     maxWidth="max-w-sm"
@@ -157,7 +165,7 @@ function Home() {
                 </li>
               </ul>
               <div className="lg:mt-5 2xl:mt-0 mt-3">
-                <Link to="/uberblick/Die 10 häufigsten Fehler bei der Wohnungssuche – und wie du sie vermeidest?id=2">
+                <Link href="/uberblick/Die%2010%20häufigsten%20Fehler%20bei%20der%20Wohnungssuche%20–%20und%20wie%20du%20sie%20vermeidest?id=2">
                   <Button2
                     title={"Weiterlesen..."}
                     maxWidth="max-w-sm"
@@ -170,11 +178,13 @@ function Home() {
             {/* img section  */}
             <div className="order-1 md:order-2 me-auto w-full">
               <div className="w-full max-h-[575px] xl:max-h-[600px] 2xl:max-h-[700px] overflow-hidden">
-                <img
+                <Image
                   loading="lazy"
                   className="w-full h-full max-h-[575px] xl:max-h-[600px] 2xl:max-h-[700px] object-cover object-top"
                   src="/img/mask-girl.png"
                   alt="mietstatus Einführungsvideo"
+                  width={600}
+                  height={700}
                 />
               </div>
             </div>
@@ -183,11 +193,13 @@ function Home() {
           <div className="w-full bg-secondary-gray p-4 lg:p-5 grid md:grid-cols-2 gap-y-5 gap-x-10 border shadow-md">
             {/* img section  */}
             <div className="me-auto w-full max-h-[575px] xl:max-h-[600px] 2xl:max-h-[700px]">
-              <img
+              <Image
                 loading="lazy"
                 className="w-full h-full max-h-[575px] xl:max-h-[600px] 2xl:max-h-[700px] object-cover object-top"
                 src="/img/mask-man-house.png"
                 alt="mietstatus Einführungsvideo"
+                width={600}
+                height={700}
               />
             </div>
             {/* content  */}
@@ -221,7 +233,7 @@ function Home() {
                 </li>
               </ul>
               <div className="lg:mt-5 2xl:mt-0 mt-3">
-                <Link to="/uberblick/Interview mit einem Vermieter: Worauf achtet er bei der Auswahl neuer Mieter%3F?id=3">
+                <Link href="/uberblick/Interview%20mit%20einem%20Vermieter:%20Worauf%20achtet%20er%20bei%20der%20Auswahl%20neuer%20Mieter%3F?id=3">
                   <Button2
                     title={"Weiterlesen..."}
                     maxWidth="max-w-sm"
@@ -240,11 +252,13 @@ function Home() {
           {/* Left Side - Paper Stack */}
           <div className="relative z-10">
             <div className="w-full h-full bg-black relative clip-left">
-              <img
+              <Image
                 loading="lazy"
                 src="/img/schluss.png"
                 alt="Schluss mit Papierkram"
                 className="w-full h-full object-cover opacity-60"
+                width={800}
+                height={830}
               />
               <div className="absolute top-10 left-1/2 -translate-x-1/2 text-2xl  lg:text-48 2xl:text-52 leading-32 font-normal flex items-center gap-x-2 lg:gap-x-8 text-white">
                 <FaThumbsDown />
@@ -257,11 +271,13 @@ function Home() {
           {/* Right Side - Modern Solution */}
           <div className="relative w-full h-full z-0 -ml-[1px]">
             <div className="w-full h-full bg-gradient-to-br from-[#C8EBF5] via-[#EEDDF9] to-[#FCE9DD] relative clip-right">
-              <img
+              <Image
                 loading="lazy"
                 src="/img/moderne.png"
                 alt="Moderne Lösung"
                 className="w-full h-full object-cover mix-blend-multiply"
+                width={800}
+                height={830}
               />
               <div className="absolute top-10 left-1/2 -translate-x-1/2 text-2xl lg:text-48 2xl:text-52 leading-32 font-normal flex items-center gap-x-2 lg:gap-x-8 text-primary-green">
                 <FaThumbsUp />
@@ -278,9 +294,9 @@ function Home() {
         <div className="bg-primary-green overflow-hidden">
           <div className="w-full sm:max-w-wider lg:max-w-8xl 2xl:max-w-9xl px-4 2xl:px-0 py-10 lg:py-16 m-auto text-white flex flex-col md:flex-row items-start md:items-center md:justify-between gap-y-5 lg:gap-y-10">
             <h4 className="text-lg lg:text-48 2xl:text-52 leading-normal lg:leading-wide lg:leading-66 2xl:leading-70 font-normal">
-              Vorbei der Struggle – jetzt wird’s <br /> einfach und digital!
+              Vorbei der Struggle – jetzt wird's <br /> einfach und digital!
             </h4>
-            <Link to={"/online-erstellen"} className="max-w-sm">
+            <Link href={"/online-erstellen"} className="max-w-sm">
               <Button2
                 title={"Mehr erfahren"}
                 maxWidth="max-w-sm"
@@ -305,5 +321,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;
