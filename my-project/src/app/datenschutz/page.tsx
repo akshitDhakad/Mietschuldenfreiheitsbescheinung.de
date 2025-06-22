@@ -1,22 +1,36 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-
 import { GoShieldCheck } from "react-icons/go";
-import { Helmet } from "react-helmet-async";
+import Image from "next/image";
 
-const data = [
+// Types
+interface SubContent {
+  title: string;
+  description: string[];
+  list?: string[];
+  subDescription?: string[];
+}
+
+interface DataSection {
+  id: number;
+  title: string;
+  description?: string[];
+  subContent?: SubContent[];
+}
+
+const data: DataSection[] = [
   {
     id: 0,
     title: "DATENSCHUTZERKLÄRUNG",
     description: [
-      "Willkommen bei mietschuldenfreiheitsbescheinigung.de! Die folgende Datenschutzerklärung gibt einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere www.mietschuldenfreiheitsbescheinigung.de besuchen. Diese Richtlinie soll die Nutzer unserer Website über Art, Umfang und Zweck der Erhebung und Nutzung personenbezogener Daten durch uns gemäß dem Bundesdatenschutzgesetz („BDSG“) und der Datenschutz-Grundverordnung („DSGVO“) informieren.",
+      "Willkommen bei mietschuldenfreiheitsbescheinigung.de! Die folgende Datenschutzerklärung gibt einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere www.mietschuldenfreiheitsbescheinigung.de besuchen. Diese Richtlinie soll die Nutzer unserer Website über Art, Umfang und Zweck der Erhebung und Nutzung personenbezogener Daten durch uns gemäß dem Bundesdatenschutzgesetz („BDSG") und der Datenschutz-Grundverordnung („DSGVO") informieren.",
     ],
   },
   {
     id: 1,
     title: "Wer ist der Datenverantwortliche?",
     description: [
-      "Ein „Datenverantwortlicher“ ist eine Person oder Organisation, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten entscheidet. In diesem Sinne ist mietschuldenfreiheitsbescheinigung.de, Tobias Mattern (Einzelunternehmer), Bänschstraße 37, 10247 Berlin („mietschuldenfreiheitsbescheinigung.de“, „wir“, „uns“, „unser“) der Datenverantwortliche. Bei allgemeinen Fragen zum Datenschutz bei mietschuldenfreiheitsbescheinigung.de erreichen Sie uns unter info@mietschuldenfreiheitsbescheinigung.de.",
+      "Ein „Datenverantwortlicher" ist eine Person oder Organisation, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten entscheidet. In diesem Sinne ist mietschuldenfreiheitsbescheinigung.de, Tobias Mattern (Einzelunternehmer), Bänschstraße 37, 10247 Berlin („mietschuldenfreiheitsbescheinigung.de", „wir", „uns", „unser") der Datenverantwortliche. Bei allgemeinen Fragen zum Datenschutz bei mietschuldenfreiheitsbescheinigung.de erreichen Sie uns unter info@mietschuldenfreiheitsbescheinigung.de.",
     ],
   },
   {
@@ -41,7 +55,7 @@ const data = [
 
           "Wir verarbeiten Ihre personenbezogenen Daten auch, wenn Sie mit uns einen Vertrag abschließen, um unsere vertraglichen Leistungen erbringen zu können. Dies umfasst insbesondere die Erstellung eines Benutzerkontos, unseren Support, die Korrespondenz mit Ihnen, die Rechnungsstellung und die Erfüllung unserer vertraglichen, buchhalterischen und steuerlichen Verpflichtungen. Je nachdem, wie Sie unsere Dienste nutzen, können wir Ihren Namen, Ihre E-Mail-Adresse, Ihre Postanschrift und Ihre Telefonnummer verarbeiten. Die Daten werden dementsprechend auf der Grundlage der Erfüllung unserer vertraglichen und gesetzlichen Verpflichtungen verarbeitet.",
 
-          "Wenn Sie unsere Dienste nutzen, um eine Mietschuldenfreiheitsbescheinigung zu erhalten oder, im Falle eines Vermieters, die Mietschuldenfreiheit zu überprüfen/bescheinigen („Dienste“), verarbeiten wir die Daten, die bei Ihrer Nutzung unserer Dienste anfallen, wie z. B. die von Ihnen bereitgestellten Daten (personenbezogene und nicht personenbezogene Daten) („Dienstdaten“), um Ihnen den Zugang zu unseren Diensten und deren Nutzung zu ermöglichen. Zu diesem Zweck werden alle von uns verarbeiteten Servicedaten in Ihrem Auftrag verarbeitet, und wir werden zu Ihrem Datenverarbeiter. Auf diese Weise bieten wir Ihnen die vollständige Kontrolle über Ihre Servicedaten, indem wir Ihnen die Möglichkeit geben, (i) auf Ihre Servicedaten zuzugreifen, (ii) Ihre Servicedaten über unterstützte Drittanbieter-Integrationen zu teilen und (iii) den Export oder die Löschung Ihrer Servicedaten zu beantragen und angemessene rechtliche Vorkehrungen sowie entsprechende technische und organisatorische Maßnahmen zu treffen, um den Schutz Ihrer Servicedaten zu gewährleisten.",
+          "Wenn Sie unsere Dienste nutzen, um eine Mietschuldenfreiheitsbescheinigung zu erhalten oder, im Falle eines Vermieters, die Mietschuldenfreiheit zu überprüfen/bescheinigen („Dienste"), verarbeiten wir die Daten, die bei Ihrer Nutzung unserer Dienste anfallen, wie z. B. die von Ihnen bereitgestellten Daten (personenbezogene und nicht personenbezogene Daten) („Dienstdaten"), um Ihnen den Zugang zu unseren Diensten und deren Nutzung zu ermöglichen. Zu diesem Zweck werden alle von uns verarbeiteten Servicedaten in Ihrem Auftrag verarbeitet, und wir werden zu Ihrem Datenverarbeiter. Auf diese Weise bieten wir Ihnen die vollständige Kontrolle über Ihre Servicedaten, indem wir Ihnen die Möglichkeit geben, (i) auf Ihre Servicedaten zuzugreifen, (ii) Ihre Servicedaten über unterstützte Drittanbieter-Integrationen zu teilen und (iii) den Export oder die Löschung Ihrer Servicedaten zu beantragen und angemessene rechtliche Vorkehrungen sowie entsprechende technische und organisatorische Maßnahmen zu treffen, um den Schutz Ihrer Servicedaten zu gewährleisten.",
 
           "Wenn sich personenbezogene Daten, die Sie uns zur Verfügung stellen, auf eine dritte Partei beziehen, erklären und garantieren Sie, dass die personenbezogenen Daten aktuell, vollständig und korrekt sind und dass Sie die vorherige Zustimmung der dritten Partei zur Erfassung, Verwendung und Offenlegung Ihrer personenbezogenen Daten für die Zwecke eingeholt haben. Sie erklären sich damit einverstanden, uns auf Anfrage unverzüglich einen schriftlichen Nachweis über diese Zustimmung vorzulegen.",
 
@@ -54,7 +68,7 @@ const data = [
         title:
           "b) Personenbezogene Daten, die unsere Website über Sie erfasst:",
         description: [
-          "description: [Wenn Sie unsere Website besuchen, werden automatisch einige Informationen über Sie und Ihren Besuch erfasst, darunter die Internetprotokoll-Adresse (IP-Adresse), die zur Verbindung Ihres Geräts mit dem Internet verwendet wird, sowie einige andere Informationen, wie z. B. die von Ihnen besuchten Seiten auf unserer Website. Dies dient dazu, die Leistung der Website zu überwachen und das Erlebnis der Besucher der Website zu verbessern. Die rechtliche Grundlage ist die Anbahnung eines Vertrags mit Ihnen und unser berechtigtes Interesse.",
+          "Wenn Sie unsere Website besuchen, werden automatisch einige Informationen über Sie und Ihren Besuch erfasst, darunter die Internetprotokoll-Adresse (IP-Adresse), die zur Verbindung Ihres Geräts mit dem Internet verwendet wird, sowie einige andere Informationen, wie z. B. die von Ihnen besuchten Seiten auf unserer Website. Dies dient dazu, die Leistung der Website zu überwachen und das Erlebnis der Besucher der Website zu verbessern. Die rechtliche Grundlage ist die Anbahnung eines Vertrags mit Ihnen und unser berechtigtes Interesse.",
           "Wir hosten unsere Website mit den Diensten von Hostinger International, Ltd, (61 Lordou Vironos str., 6023 Larnaca, Cyprus). In diesem Sinne verarbeitet Hostinger alle Daten und Kommunikationsdaten, einschließlich IP-Adressen, die uns über unsere Website zur Verfügung gestellt werden. Das bedeutet, dass alle Daten, die an unsere Website übermittelt werden, an Hostinger weitergeleitet werden. Die Rechtsgrundlage für die Verarbeitung ist unser berechtigtes Interesse.",
 
           "Wir haben Google Fonts von Google LLC (1600 Amphitheatre Parkway Mountain View, CA 94043, USA, und Google Ireland Limited Gordon House, Barrow Street, Dublin 4, Irland) auf unserer Website integriert. Das bedeutet, dass, wenn Ihr Browser eine Verbindung zu unserer Website herstellt, der Google-Server die Schriftarten an Ihren Browser zurücksendet, damit Sie ordnungsgemäß angezeigt werden. In diesem Sinne erhält Google Kenntnis von i) Ihrer IP-Adresse und ii) anderen technischen Daten im Zusammenhang mit Ihrem Zugriff. Die Integration basiert auf unseren berechtigten Interessen.",
@@ -63,7 +77,7 @@ const data = [
       {
         title: "c) Cookies:",
         description: [
-          "Wir verwenden auf unserer Website sogenannte Cookies. Cookies sind Informationen, die von unserem Webserver oder den Webservern von Drittanbietern an Ihren Webbrowser übermittelt und dort zum späteren Abruf gespeichert werden. Bei Cookies kann es sich um kleine Dateien oder andere Arten der Informationsspeicherung handeln. Wie im Gesetz über den Datenschutz und den Schutz der Privatsphäre in der Telekommunikation und bei digitalen Diensten („TDDDG”) und in der EU-Richtlinie über den Schutz der Privatsphäre und der elektronischen Kommunikation („PECD”) festgelegt, müssen wir für die Verwendung von nicht wesentlichen Cookies die Zustimmung einholen. Die Rechtsgrundlage für die Verwendung wesentlicher Cookies ist unser berechtigtes Interesse, und die Rechtsgrundlage für die Verwendung nicht wesentlicher Cookies ist Ihre Zustimmung.",
+          "Wir verwenden auf unserer Website sogenannte Cookies. Cookies sind Informationen, die von unserem Webserver oder den Webservern von Drittanbietern an Ihren Webbrowser übermittelt und dort zum späteren Abruf gespeichert werden. Bei Cookies kann es sich um kleine Dateien oder andere Arten der Informationsspeicherung handeln. Wie im Gesetz über den Datenschutz und den Schutz der Privatsphäre in der Telekommunikation und bei digitalen Diensten („TDDDG") und in der EU-Richtlinie über den Schutz der Privatsphäre und der elektronischen Kommunikation („PECD") festgelegt, müssen wir für die Verwendung von nicht wesentlichen Cookies die Zustimmung einholen. Die Rechtsgrundlage für die Verwendung wesentlicher Cookies ist unser berechtigtes Interesse, und die Rechtsgrundlage für die Verwendung nicht wesentlicher Cookies ist Ihre Zustimmung.",
         ],
       },
       {
@@ -88,7 +102,7 @@ const data = [
         ],
         subDescription: [
           "Wir verwenden die unten genannten nicht-essentiellen Cookies und andere Online-Identifikationstechnologien wie Web-Beacons oder Pixel, um den Nutzern ein besseres Nutzererlebnis zu bieten.",
-          "Wir verwenden sogenannte Pixel-Cookies und Tags („Pixel-Cookies“). Ein Pixel-Cookie ist ein Werbetool und besteht in der Regel aus einem JavaScript-Code-Snippet, das es uns ermöglicht, die Aktivitäten der Besucher auf unserer Website zu verstehen und zu verfolgen. Zu diesem Zweck sammeln und verarbeiten Pixel-Cookies Informationen über die Besucher unserer Website und das verwendete Gerät (sogenannte Ereignisdaten).",
+          "Wir verwenden sogenannte Pixel-Cookies und Tags („Pixel-Cookies"). Ein Pixel-Cookie ist ein Werbetool und besteht in der Regel aus einem JavaScript-Code-Snippet, das es uns ermöglicht, die Aktivitäten der Besucher auf unserer Website zu verstehen und zu verfolgen. Zu diesem Zweck sammeln und verarbeiten Pixel-Cookies Informationen über die Besucher unserer Website und das verwendete Gerät (sogenannte Ereignisdaten).",
           "Die durch Pixel-Cookies gesammelten Ereignisdaten werden für die Ausrichtung unserer Werbung und die Verbesserung der Anzeigenauslieferung und der personalisierten Werbung verwendet. Zu diesem Zweck werden die auf unserer Website mittels Pixel-Cookies erhobenen Ereignisdaten an den jeweiligen Betreiber des Pixel-Cookies übermittelt und teilweise auch auf Ihrem Gerät gespeichert. Dies geschieht jedoch nur mit Ihrer Zustimmung, und wir und der jeweilige Betreiber des Pixel-Cookies gelten als gemeinsame Verantwortliche. Für die anschließende Verarbeitung der übermittelten Ereignisdaten ist der jeweilige Betreiber des Pixel-Cookies jedoch der alleinige Verantwortliche.",
           "Weitere Informationen darüber, wie der jeweilige Betreiber des Pixel-Cookies personenbezogene Daten verarbeitet, einschließlich der Rechtsgrundlage, auf die er sich stützt, und wie Sie Ihre Rechte ausüben können, finden Sie in den folgenden Datenschutzrichtlinien: Facebook und Instagram (Meta Platforms, Inc., 1601 Willow Road Menlo Park California 94025 und 4 Grand Canal Square Grand Canal Harbour Dublin 2, Irland).",
           "Wir verwenden Google Analytics, einen von Google bereitgestellten Webanalysedienst. Google Analytics verwendet ebenfalls Cookies, damit unsere Website analysieren kann, wie Nutzer unsere Website über verschiedene Geräte hinweg nutzen. Die von den Cookies erzeugten Informationen über Ihre Nutzung unserer Website werden an Google übermittelt und dort gespeichert, einschließlich der Übermittlung in die Vereinigten Staaten. Die folgenden Daten werden durch die Verwendung von Google Analytics verarbeitet: a) 3 Byte der IP-Adresse des aufgerufenen Systems des Website-Besuchers (anonymisierte IP-Adresse); b) die Website aufgerufen; c) die Website, von der aus der Nutzer die aufgerufene Seite unserer Website erreicht hat (Referrer); d) die Unterseiten, die von der Website aus aufgerufen werden; e) die auf der Website verbrachte Zeit; und f) die Häufigkeit, mit der die Website aufgerufen wird.",
@@ -158,7 +172,7 @@ const data = [
     id: 12,
     title: "Datensicherheit",
     description: [
-      "Unsere Website verwendet eine SSL- oder TLS-Verschlüsselung, um die Sicherheit der Datenverarbeitung zu gewährleisten und die Übertragung vertraulicher Inhalte wie Bestellungen, Login-Daten oder Kontaktanfragen, die Sie an uns senden, zu schützen. Darüber hinaus haben wir zahlreiche Sicherheitsmaßnahmen (technische und organisatorische Maßnahmen”) ergriffen, z. B. Verschlüsselung oder Need-to-know-Zugriff, um einen möglichst umfassenden Schutz der über unsere Website verarbeiteten personenbezogenen Daten zu gewährleisten.",
+      "Unsere Website verwendet eine SSL- oder TLS-Verschlüsselung, um die Sicherheit der Datenverarbeitung zu gewährleisten und die Übertragung vertraulicher Inhalte wie Bestellungen, Login-Daten oder Kontaktanfragen, die Sie an uns senden, zu schützen. Darüber hinaus haben wir zahlreiche Sicherheitsmaßnahmen (technische und organisatorische Maßnahmen") ergriffen, z. B. Verschlüsselung oder Need-to-know-Zugriff, um einen möglichst umfassenden Schutz der über unsere Website verarbeiteten personenbezogenen Daten zu gewährleisten.",
     ],
   },
   { id: 13, title: "Ihre Rechte und Privilegien" },
@@ -200,18 +214,18 @@ const data = [
   },
 ];
 
-function DataProtectionPage() {
-  const refMap = useRef({});
-  const [activeSection, setActiveSection] = useState(null);
+export default function DataProtectionPage() {
+  const refMap = useRef<Record<string, React.RefObject<HTMLDivElement>>>({});
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
-  const getRef = (title) => {
+  const getRef = (title: string) => {
     if (!refMap.current[title]) {
-      refMap.current[title] = React.createRef();
+      refMap.current[title] = React.createRef<HTMLDivElement>();
     }
     return refMap.current[title];
   };
 
-  const scrollToSection = (title) => {
+  const scrollToSection = (title: string) => {
     const ref = refMap.current[title];
     if (ref?.current) {
       ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -254,7 +268,7 @@ function DataProtectionPage() {
         <div className="bg-white sm:max-w-wider lg:max-w-8xl 2xl:max-w-9xl m-auto px-4 py-10 lg:py-20 space-y-10 grid lg:grid-cols-3 gap-x-20 items-start">
           {/* left section  */}
           <div className="lg:col-span-2 space-y-10">
-            {data?.map((section, index) => (
+            {data?.map((section: DataSection, index: number) => (
               <div
                 key={index}
                 id={section?.title}
@@ -272,7 +286,7 @@ function DataProtectionPage() {
                   {section.title}
                 </h2>
                 {section?.description &&
-                  section.description.map((i, index) => (
+                  section.description.map((i: string, index: number) => (
                     <p
                       key={index}
                       className="text-base lg:text-xl 2xl:text-28 2xl:leading-50 tracking-normal lg:tracking-wide break-words"
@@ -282,7 +296,7 @@ function DataProtectionPage() {
                   ))}
                 <div>
                   {section.subContent &&
-                    section.subContent.map((subContent, index) => (
+                    section.subContent.map((subContent: SubContent, index: number) => (
                       <div
                         key={index}
                         className="space-y-2 lg:space-y-4 2xl:space-y-5"
@@ -290,7 +304,7 @@ function DataProtectionPage() {
                         <h2 className="font-medium lg:text-xl 2xl:text-28 tracking-normal lg:tracking-wide leading-medium 2xl:leading-50 break-words">
                           {subContent.title}
                         </h2>
-                        {subContent.description.map((subDescription, index) => (
+                        {subContent.description.map((subDescription: string, index: number) => (
                           <p
                             key={index}
                             className="lg:ps-2 text-base lg:text-xl 2xl:text-28 2xl:leading-50 font-normal tracking-normal lg:tracking-wide break-words"
@@ -300,7 +314,7 @@ function DataProtectionPage() {
                         ))}
                         {subContent.list && (
                           <ul className="space-y-4 list-disc list-inside">
-                            {subContent.list.map((i, lIndex) => (
+                            {subContent.list.map((i: string, lIndex: number) => (
                               <li
                                 className="tracking-normal lg:tracking-wide text-base lg:text-xl 2xl:text-28 2xl:leading-50 break-words"
                                 key={lIndex}
@@ -311,7 +325,7 @@ function DataProtectionPage() {
                           </ul>
                         )}
                         {subContent.subDescription &&
-                          subContent.subDescription.map((i, index) => (
+                          subContent.subDescription.map((i: string, index: number) => (
                             <p
                               key={index}
                               className="text-secondary-text text-base lg:text-xl 2xl:text-28 2xl:leading-50 tracking-normal lg:tracking-wide break-words"
@@ -330,7 +344,7 @@ function DataProtectionPage() {
             <h6 className="text-primary-black opacity-80 mb-8 text-2xl">
               Inhaltsverzeichnis
             </h6>
-            {data?.map((section, index) => (
+            {data?.map((section: DataSection, index: number) => (
               <div
                 key={index}
                 onClick={() => scrollToSection(section.title)}
@@ -353,7 +367,7 @@ function DataProtectionPage() {
                 {section.subContent && (
                   <div className="space-y-2 lg:space-y-4 2xl:space-y-5 px-2 mt-2">
                     {section.subContent &&
-                      section.subContent.map((subContent, index) => (
+                      section.subContent.map((subContent: SubContent, index: number) => (
                         <h4
                           key={index}
                           className="text-base 2xl:text-xl break-words tracking-wide font-normal "
@@ -377,11 +391,13 @@ function HeroSection() {
     <section>
       <div className="h-full mx-auto grid grid-cols-1 md:grid-cols-2">
         <div className="w-full h-full">
-          <img
+          <Image
             loading="lazy"
             className="w-full h-full object-cover"
             src="/banner/data-protection.png"
             alt="impressum"
+            width={800}
+            height={600}
           />
         </div>
         <div className="bg-primary-green text-white content-end">
@@ -396,7 +412,7 @@ function HeroSection() {
                 "Wir sind eine reine Informationsseite",
                 "Wir speichern keinerlei persönliche Daten",
                 "Personenbezogene Daten werden nicht verarbeitet",
-              ].map((i, index) => (
+              ].map((i: string, index: number) => (
                 <li
                   key={index}
                   className="flex items-center gap-x-4 text-base lg:text-xl 2xl:text-32 font-normal"
@@ -410,6 +426,4 @@ function HeroSection() {
       </div>
     </section>
   );
-}
-
-export default DataProtectionPage;
+} 
