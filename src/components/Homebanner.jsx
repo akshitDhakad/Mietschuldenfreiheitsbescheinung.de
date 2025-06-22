@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { MdMenuBook } from "react-icons/md";
 import Badge from "../utils/Badge";
 
@@ -66,11 +67,13 @@ function Homebanner() {
         <div className="flex items-center justify-end">
           <div>
             <div className="w-full max-h-[400px] sm:max-h-[500px] md:max-h-[600px] lg:max-h-[650px] xl:max-h-[700px] 2xl:max-h-[720px] overflow-hidden">
-              <img
+              <Image
                 loading="lazy"
                 className="h-full w-full object-contain object-center"
                 src="/banner/home-banner.png"
                 alt="home-banner.png"
+                width={800}
+                height={720}
               />
             </div>
 
@@ -78,7 +81,7 @@ function Homebanner() {
               <h4 className="text-base lg:text-2xl 2xl:text-32 max-w-sm 2xl:max-w-xl font-normal leading-normal 2xl:leading-45">
                 Wie komme ich an eine Bescheinigung?
               </h4>
-              <Link href="/uberblick/Wie erhalte ich eine Mietschuldenfreiheitsbescheinigung%3F?id=1">
+              <Link href="/uberblick/Wie%20erhalte%20ich%20eine%20Mietschuldenfreiheitsbescheinigung%3F?id=1">
                 <button className="text-xs lg:text-xl 2xl:text-2xl border border-primary-green px-2 py-2.5 lg:px-5 lg:py-4">
                   Weiterlesen...
                 </button>

@@ -1,11 +1,12 @@
 "use client";
 import { useRef, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import FaqSection from "@/components/FaqSection";
 import { Button2, Button3 } from "@/utils/Button";
 import PropTypes from "prop-types";
 import Badge from "@/utils/Badge";
 import Testinomials from "@/components/TestComponent";
-import { Link } from "react-router-dom";
 
 // icons
 import { PiLightning } from "react-icons/pi";
@@ -102,11 +103,13 @@ function InformationPage() {
       <section>
         <div className="sm:max-w-wider lg:max-w-8xl 2xl:max-w-9xl px-4 py-4 flex justify-center">
           <div className="m-auto">
-            <img
+            <Image
               loading="lazy"
               className="h-8 lg:h-12 object-cover object-center"
               src="/img/mietstatus.png"
               alt="mietstatus.png"
+              width={200}
+              height={48}
             />
           </div>
         </div>
@@ -118,12 +121,14 @@ function InformationPage() {
           <div className="order-2 md:order-1 h-full w-full flex justify-center md:p-5 lg:p-10">
             <div className="w-full h-full relative">
               {!isPlaying && (
-                <img
+                <Image
                   loading="lazy"
                   src="/img/video-preview.png"
                   alt="Video preview"
                   className="w-full h-full min-h-[250px] max-h-[518px]s object-contain cursor-pointer"
                   onClick={handlePlay}
+                  width={600}
+                  height={518}
                 />
               )}
               {!isPlaying && (
@@ -182,7 +187,7 @@ function InformationPage() {
               </li>
             </ul>
             <div>
-              <Link to={"https://mietstatus.de/"} className={"max-w-sm"}>
+              <Link href={"https://mietstatus.de/"} className={"max-w-sm"}>
                 <Button2
                   title={"Bescheinigung erstellen"}
                   textCss={
@@ -382,7 +387,7 @@ function InformationPage() {
                 <th className="border-s border-gray-200 px-4 py-10 font-medium text-gray-700 text-center">
                   <div className="mt-2 flex items-center justify-center">
                     <Link
-                      to={"/kostenlose-vorlage"}
+                      href={"/kostenlose-vorlage"}
                       className="max-w-sm m-auto"
                     >
                       <Button3
@@ -396,7 +401,7 @@ function InformationPage() {
                 </th>
                 <th className="hidden md:block border-s bg-light-green border-gray-200 px-4 py-10 font-medium text-gray-700 text-center">
                   <div className="mt-2 flex items-center justify-center">
-                    <Link to={"https://mietstatus.de/"}>
+                    <Link href={"https://mietstatus.de/"}>
                       <Button2
                         maxWidth={"max-w-min ms-auto"}
                         title={"Online erstellen"}
@@ -473,7 +478,7 @@ function InformationPage() {
             <h6 className="border-s border-gray-200 px-4 py-5 font-medium text-gray-700 text-center text-2xl 2xl:text-4xl">
               Kostenlose Vorlage
             </h6>
-            <Link to={"/kostenlose-vorlage"} className="max-w-xs m-auto">
+            <Link href={"/kostenlose-vorlage"} className="max-w-xs m-auto">
               <Button3 title={"Vorlage herunterladen"} />
             </Link>
           </div>
@@ -528,7 +533,7 @@ function InformationPage() {
                 alt="mietstatus"
               />
             </div>
-            <Link to={"https://mietstatus.de/"}>
+            <Link href={"https://mietstatus.de/"}>
               <Button2
                 maxWidth={"max-w-min m-auto"}
                 title={"Online erstellen"}
@@ -594,7 +599,7 @@ function InformationPage() {
                 Deine Daten in besten Händen: <br /> Datensicherheit und
                 Datenschutz
               </h2>
-              <Link to={"https://mietstatus.de/datenschutz"}>
+              <Link href={"https://mietstatus.de/datenschutz"}>
                 <Button2
                   maxWidth="max-w-min m-auto"
                   title={"Datenschutzerklärung"}
@@ -772,7 +777,7 @@ function InformationPage() {
                 <h4 className="text-primary-green text-2xl lg:text-4xl xl:text-4xl 2xl:text-52 leading-normal lg:leading-57 2xl:leading-70">
                   Erhalte deine Bescheinigung in Minuten, nicht Tagen
                 </h4>
-                <Link to={"https://mietstatus.de/"}>
+                <Link href={"https://mietstatus.de/"}>
                   <Button2
                     title={"Jetzt zu mietstatus.de"}
                     maxWidth="max-w-min"

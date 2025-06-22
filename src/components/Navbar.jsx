@@ -54,11 +54,11 @@ export default function Navbar() {
           </li>
           <li
             className={
-              active.startsWith("/uberblick") ? "text-primary-green" : ""
+              active.startsWith("/wissenswertes") ? "text-primary-green" : ""
             }
           >
-            <Link href="/uberblick/Mietschuldenfreiheitsbescheinigung erklärt?id=0">
-              Überblick
+            <Link href="/wissenswertes/Mietschuldenfreiheitsbescheinigung erklärt?id=0">
+              Wissenswertes
             </Link>
           </li>
           <li
@@ -66,7 +66,7 @@ export default function Navbar() {
               active.includes("wie-erhalte") ? "text-primary-green" : ""
             }
           >
-            <Link href="/uberblick/Wie%20erhalte%20ich%20eine%20Mietschuldenfreiheitsbescheinigung%3F?id=1">
+            <Link href="/wissenswertes/Wie%20erhalte%20ich%20eine%20Mietschuldenfreiheitsbescheinigung%3F?id=1">
               Anleitung
             </Link>
           </li>
@@ -161,12 +161,12 @@ export default function Navbar() {
               <Link href="/">Startseite</Link>
             </li>
             <li className="hover:text-primary-blue" onClick={toggleMenu}>
-              <Link href="/uberblick/mietschuldenfreiheitsbescheinigung erklärt?id=0">
-                Überblick
+              <Link href="/wissenswertes/mietschuldenfreiheitsbescheinigung erklärt?id=0">
+                Wissenswertes
               </Link>
             </li>
             <li className="hover:text-primary-blue" onClick={toggleMenu}>
-              <Link href="/uberblick/Wie%20erhalte%20ich%20eine%20Mietschuldenfreiheitsbescheinigung%3F?id=1">
+              <Link href="/wissenswertes/Wie%20erhalte%20ich%20eine%20Mietschuldenfreiheitsbescheinigung%3F?id=1">
                 Anleitung
               </Link>
             </li>
