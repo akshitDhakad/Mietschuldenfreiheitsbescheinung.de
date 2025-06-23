@@ -4,7 +4,12 @@ import { useState } from "react";
 import { MdMenuBook } from "react-icons/md";
 import Badge from "../utils/Badge";
 
-const faq = [
+interface FaqItem {
+  title: string;
+  description: string;
+}
+
+const faq: FaqItem[] = [
   {
     title: "Was ist eine Mietschuldenfreiheitsbescheinigung?",
     description:
@@ -38,15 +43,17 @@ const faq = [
   },
 ];
 
-const FaqSection = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
-  const toggleAccordion = (index) => {
+const FaqSection = (): JSX.Element => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const toggleAccordion = (index: number): void => {
     if (activeIndex === index) {
       setActiveIndex(null);
     } else {
       setActiveIndex(index);
     }
   };
+
   return (
     <section id="faq" className="bg-[#FCFCFC]">
       <div className="sm:max-w-wider lg:max-w-8xl 2xl:max-w-9xl flex flex-col justify-center gap-y-5 m-auto px-4 2xl:px-0">
@@ -66,7 +73,7 @@ const FaqSection = () => {
           </div>
           {/* container */}
           <div className="w-full max-w-6xl 2xl:max-w-8xl m-auto flex flex-col gap-y-6">
-            {faq?.map((item, index) => (
+            {faq?.map((item: FaqItem, index: number) => (
               <div
                 key={index}
                 className={`${

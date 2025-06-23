@@ -65,8 +65,8 @@ function Homebanner() {
         </div>
         {/* Right  */}
         <div className="flex items-center justify-end">
-          <div>
-            <div className="w-full max-h-[400px] sm:max-h-[500px] md:max-h-[600px] lg:max-h-[650px] xl:max-h-[700px] 2xl:max-h-[720px] overflow-hidden">
+          <div className="w-full">
+            <div className="w-full h-full overflow-hidden">
               <Image
                 loading="lazy"
                 className="h-full w-full object-contain object-center"
@@ -76,7 +76,7 @@ function Homebanner() {
                 height={720}
               />
             </div>
-
+            {/* content  */}
             <div className="bg-[#E0F3EC] text-primary-green px-4 py-5 lg:px-8 lg:py-10 flex items-center justify-around">
               <h4 className="text-base lg:text-2xl 2xl:text-32 max-w-sm 2xl:max-w-xl font-normal leading-normal 2xl:leading-45">
                 Wie komme ich an eine Bescheinigung?

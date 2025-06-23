@@ -1,9 +1,14 @@
 import { FaArrowRightLong } from "react-icons/fa6";
 import { BsPatchCheck } from "react-icons/bs";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
-import PropTypes from "prop-types";
 
-const Button1 = ({ title, textCss, iconCss }) => (
+interface Button1Props {
+  title: string;
+  textCss?: string;
+  iconCss?: string;
+}
+
+const Button1 = ({ title, textCss, iconCss }: Button1Props): JSX.Element => (
   <button className="bg-primary-green text-white whitespace-nowrap hover:opacity-80 flex items-center justify-between">
     <div
       className={`${iconCss} text-primary-green bg-secondary-green px-4 py-2.5 lg:py-4`}
@@ -11,44 +16,57 @@ const Button1 = ({ title, textCss, iconCss }) => (
       <BsPatchCheck className="size-6 2xl:size-8" />
     </div>
     <div
-      className={`${textCss} font-medium flex-1 text-center px-4 py-2.5 lg:px-8 lg:py-3.5`}
+      className={`${textCss} font-medium flex-1 text-center px-4 py-2.5 lg:px-8 lg:py-5`}
     >
       {title}
     </div>
   </button>
 );
 
-Button1.propTypes = {
-  title: PropTypes.string.isRequired,
-  textCss: PropTypes.string,
-  iconCss: PropTypes.string,
-};
+interface Button2Props {
+  title: string;
+  maxWidth?: string;
+  textCss?: string;
+  iconCss?: string;
+}
 
-const Button2 = ({ title, maxWidth = "", textCss = "", iconCss = "" }) => {
+const Button2 = ({
+  title,
+  maxWidth = "",
+  textCss = "",
+  iconCss = "",
+}: Button2Props): JSX.Element => {
   return (
     <button
-      className={`${maxWidth} bg-primary-green text-white  whitespace-nowrap hover:opacity-80 flex items-center justify-between`}
+      className={`${maxWidth} bg-primary-green text-white whitespace-nowrap hover:opacity-80 flex items-center justify-between`}
     >
       <div
-        className={`${textCss} font-medium flex-1 text-center px-4 py-2 lg:px-8 lg:py-5`}
+        className={`${textCss} font-medium flex-1 text-center px-4 py-2 lg:px-8 lg:py-4`}
       >
         {title}
       </div>
-      <div className={`${iconCss} bg-[#CBEADF] p-3 lg:p-6`}>
+      <div
+        className={`${iconCss} bg-secondary-green text-primary-green p-3 lg:p-5`}
+      >
         <FaArrowRightLong />
       </div>
     </button>
   );
 };
 
-Button2.propTypes = {
-  title: PropTypes.string.isRequired,
-  maxWidth: PropTypes.string,
-  textCss: PropTypes.string,
-  iconCss: PropTypes.string,
-};
+interface Button3Props {
+  title: string;
+  maxWidth?: string;
+  textCss?: string;
+  iconCss?: string;
+}
 
-const Button3 = ({ title, textCss, iconCss, maxWidth }) => {
+const Button3 = ({
+  title,
+  textCss,
+  iconCss,
+  maxWidth,
+}: Button3Props): JSX.Element => {
   return (
     <button
       className={`w-full ${maxWidth} bg-secondary-green whitespace-nowrap hover:opacity-80 flex items-center justify-between`}
@@ -64,13 +82,6 @@ const Button3 = ({ title, textCss, iconCss, maxWidth }) => {
       </div>
     </button>
   );
-};
-
-Button3.propTypes = {
-  title: PropTypes.string.isRequired,
-  maxWidth: PropTypes.string,
-  textCss: PropTypes.string,
-  iconCss: PropTypes.string,
 };
 
 export { Button1, Button2, Button3 };
